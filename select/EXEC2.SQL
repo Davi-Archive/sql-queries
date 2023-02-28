@@ -127,3 +127,12 @@ GROUP BY ProductSubcategoryName
 ORDER BY COUNT(PRODUCTNAME) DESC
 --
 --
+SELECT
+BrandName,
+ProductSubcategoryName,
+count(*)
+FROM DimProduct AS P
+INNER JOIN DimProductSubcategory AS S
+ON P.ProductSubcategoryKey = S.ProductSubcategoryKey
+GROUP BY BrandName,ProductSubcategoryName
+ORDER BY BrandName
