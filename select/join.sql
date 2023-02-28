@@ -58,3 +58,12 @@ FROM
 MARCAS AS M
 CROSSJOIN SUBCATEGORIA
 --
+SELECT
+D.ProductName,
+C.ProductSubcategoryNamE,
+F.ProductCategoryName
+FROM DimProduct AS D
+INNER JOIN DimProductSubcategory AS C
+ON D.ProductSubcategoryKey =  C.ProductCategoryKey
+INNER JOIN DimProductCategory AS F
+ON C.ProductCategoryKey = F.ProductCategoryKey
