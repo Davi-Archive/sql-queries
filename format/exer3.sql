@@ -44,3 +44,37 @@ SUBSTRING(EmailAddress,0,CHARINDEX('@',EmailAddress)) AS 'LOGIN',
 UPPER(CONCAT(FirstName,DAY(BirthDate))) AS 'SENHA'
 FROM
 DimEmployee
+--
+SELECT
+CONCAT(FirstName,' ',LastName) AS 'NOME COMPLETO',
+EmailAddress,
+SUBSTRING(EmailAddress,0,
+CHARINDEX('@',EmailAddress)) AS 'LOGIN',
+UPPER(CONCAT(FirstName,DAY(BirthDate))) AS 'SENHA'
+FROM
+DimEmployee
+----------------------------------------------------------------
+SELECT
+FirstName,
+DateFirstPurchase
+FROM
+DimCustomer
+WHERE DateFirstPurchase
+BETWEEN '2001-01-01' AND '2001-12-31'
+----------------
+SELECT
+FirstName,
+EmailAddress,
+HireDate,
+DAY(HIREDATE) AS 'DAY',
+FORMAT(HIREDATE,'MMMM') AS 'MONTH',
+YEAR(HIREDATE) AS 'YEAR'
+FROM
+DimEmployee
+--------
+
+DATEDIFF(DAY,OpenDate,GETDATE()) AS 'OPEN DAYS'
+FROM
+DimStore
+WHERE CloseDate IS NULL
+ORDER BY DATEDIFF(DAY,OpenDate,GETDATE()) DESC
