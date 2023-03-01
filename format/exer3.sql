@@ -1,0 +1,46 @@
+SELECT
+ProductName,
+LEN(PRODUCTNAME)
+FROM
+DimProduct
+ORDER BY LEN(PRODUCTNAME) DESC
+--
+SELECT
+AVG(LEN(PRODUCTNAME))
+FROM
+DimProduct
+ORDER BY AVG(LEN(PRODUCTNAME)) DESC
+--
+SELECT
+REPLACE(REPLACE (ProductName,'WWI',''),'CONTOSO','')
+FROM
+DimProduct
+--
+SELECT
+AVG(LEN(REPLACE(REPLACE (ProductName,'WWI',''),'CONTOSO','')))
+FROM
+DimProduct
+--38
+SELECT
+REPLACE(REPLACE(
+REPLACE(REPLACE(
+REPLACE(REPLACE(
+REPLACE(REPLACE(
+REPLACE(REPLACE(StyleName,'9','J')
+,'8','I')
+,'7','H')
+,'6','G')
+,'5','F')
+,'4','E')
+,'3','D')
+,'2','C')
+,'1','B')
+,'0','A')
+FROM
+DimProduct
+--------
+SELECT
+SUBSTRING(EmailAddress,0,CHARINDEX('@',EmailAddress)) AS 'LOGIN',
+UPPER(CONCAT(FirstName,DAY(BirthDate))) AS 'SENHA'
+FROM
+DimEmployee
