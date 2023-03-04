@@ -58,3 +58,34 @@ VALUES
 SELECT * FROM funcionarios
 WHERE idade = ANY (
 SELECT idade FROM funcionarios WHERE SEXO='M')
+----
+----
+select
+PRODUCTKEY,
+PRODUCTNAME,
+(SELECT COUNT(PRODUCTKEY)
+FROM FactSales
+WHERE
+FactSaleS.ProductKey = DimProduct.ProductKey)
+AS 'QTD. VENDAS'
+FROM
+DimProduct
+
+----
+----
+SELECT
+CustomerKey,
+FirstName,
+LastName,
+YearlyIncome
+FROM
+DimCustomer
+WHERE YearlyIncome = (
+SELECT MAX(YEARLYINCOME)
+FROM DimCustomer
+WHERE YearlyIncome < (
+	SELECT MAX(YearlyIncome)
+	FROM DimCustomer
+	WHERE CustomerType = 'PERSON'
+)
+)
