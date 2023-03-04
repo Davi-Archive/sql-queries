@@ -38,3 +38,23 @@ ID_CLIENTE,ID_GERENTE
 (7,CAST('2019-01-12' AS datetime),2,4,23000),
 (8,CAST('2019-01-12' AS datetime),4,1,23000),
 (9,CAST('2019-01-12' AS datetime),3,2,23000)
+------
+CREATE TABLE funcionarios(
+id_funcionario int,
+nome varchar(50),
+idade int,
+sexo varchar(2))
+
+INSERT INTO funcionarios(id_funcionario,nome,idade,sexo)
+VALUES
+(1,'JULIA',20,'F'),
+(2,'MARCOS',22,'F'),
+(3,'DANIEL',23,'F'),
+(4,'AMANDA',24,'F'),
+(5,'PEDRO',25,'F'),
+(6,'ANDRÉ',26,'F')
+----
+--
+SELECT * FROM funcionarios
+WHERE idade = ANY (
+SELECT idade FROM funcionarios WHERE SEXO='M')
