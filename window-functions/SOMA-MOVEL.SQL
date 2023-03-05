@@ -44,3 +44,42 @@ AVG(Faturamento_MM)
 	) AS 'MÉDIA MÓVEL'
 FROM
 Resultado
+----
+----
+SELECT
+Data_Fechamento,
+Mes_Ano,
+Faturamento_MM,
+SUM(Faturamento_MM)
+	OVER(
+	ORDER BY DATA_FECHAMENTO
+	ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+	) AS 'SOMA MÓVEL inicio'
+FROM
+Resultado
+--
+--
+SELECT
+Data_Fechamento,
+Mes_Ano,
+Faturamento_MM,
+SUM(Faturamento_MM)
+	OVER(
+	ORDER BY DATA_FECHAMENTO
+	ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING
+	) AS 'SOMA MÓVEL'
+FROM
+Resultado
+---
+---
+SELECT
+Data_Fechamento,
+Mes_Ano,
+Faturamento_MM,
+SUM(Faturamento_MM)
+	OVER(
+	ORDER BY DATA_FECHAMENTO
+	ROWS BETWEEN 3 PRECEDING AND 3 FOLLOWING
+	) AS 'SOMA MÓVEL'
+FROM
+Resultado
