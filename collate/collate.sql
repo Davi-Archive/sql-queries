@@ -48,3 +48,9 @@ FROM TABELA
 WHERE NOME like '_[^Aa]%'
 ---
 ---
+SELECT
+ID,
+NOME
+FROM TABELA
+WHERE NOME like '_[^Aa]%'
+
