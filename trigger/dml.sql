@@ -1,0 +1,53 @@
+CREATE OR ALTER TRIGGER tgClienteAlterado
+ON dCliente
+AFTER INSERT,UPDATE,DELETE
+AS
+BEGIN
+
+	PRINT 'OS DADOS DA TABELA DCLIENTE FORAM ALTERADOS'
+
+END
+
+INSERT INTO dCliente(nome_cliente,genero,data_de_nascimento,cpf)
+VALUES ('Zacarias Neto','m','1999-02-13','123.123.567-23')
+----
+----
+CREATE OR ALTER TRIGGER tgClienteAlternado
+ON dCliente
+AFTER INSERT, UPDATE,DELETE
+AS
+BEGIN
+
+	IF EXISTS (SELECT * FROM inserted)
+	AND EXISTS(SELECT * FROM deleted)
+		PRINT 'DADOS FORAM ATUALIZADOS NA TABELA'
+	ELSE IF EXISTS (SELECT * FROM inserted)
+		PRINT 'DADOS INSERIDOS'
+	ELSE IF EXISTS (SELECT * FROM deleted)
+		PRINT 'DADOS EXCLUIDOS'
+
+END
+---
+---
+INSERT INTO dCliente(nome_cliente,genero,data_de_nascimento,cpf)
+VALUES
+('ELEONORA BATISTA','F','2003-04-11','453.453.234-00')
+---
+
+CREATE OR ALTER TRIGGER tgControleRegistros
+on dCliente
+INSTEAD OF INSERT
+AS
+BEGIN
+
+	IF FORMAT(GETDATE(),'dddd') IN ('sábado','domingo')
+	BEGIN
+
+		RAISERROR('O CADASTRO DE CLIENTES SO
+		PODE SER FEITO DE SEGUNDA A SEXTA',1,1)
+
+	END
+
+
+
+END
